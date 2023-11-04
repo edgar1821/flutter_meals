@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:meals/models/Category.dart';
 
 class CategoryGridItem extends StatelessWidget {
-  const CategoryGridItem({super.key, required this.category});
+  const CategoryGridItem({
+    super.key,
+    required this.category,
+    required this.onSelectCategory,
+  });
 
   final Category category;
+  final void Function() onSelectCategory;
   @override
   Widget build(BuildContext context) {
     /*
@@ -12,7 +17,7 @@ class CategoryGridItem extends StatelessWidget {
     we are using inkwell for wrapp the container and add other behavior
      */
     return InkWell(
-      onTap: () {},
+      onTap: onSelectCategory,
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(16),
       child: Container(

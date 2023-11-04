@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 import 'package:meals/screens/Categories.dart';
+//import 'package:meals/screens/Categories.dart';
+import 'package:meals/screens/MealScreen.dart';
+import 'package:meals/data/dummy_data.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -27,3 +30,10 @@ class App extends StatelessWidget {
     );
   }
 }
+/**
+ * 
+ * home: const MealScreen(
+        title: 'Some Categoty',
+        meals: dummyMeals,
+      ),
+ */
