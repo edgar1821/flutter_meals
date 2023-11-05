@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meals/models/Meal.dart';
+import 'package:meals/widgets/meal_item_trail.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
@@ -8,6 +9,18 @@ class MealItem extends StatelessWidget {
     required this.meal,
   });
   final Meal meal;
+
+  String get complexityTest {
+    return meal.complexity.name[0].toUpperCase() +
+        meal.complexity.name.substring(1);
+  }
+
+  String get affordabilityText {
+    return meal.affordability.name[0].toUpperCase() +
+        meal.affordability.name.substring(1);
+  }
+
+  // ignore: slash_for_doc_comments
   /**
    the difference between column and stack is
    column the widgets are positioned next to each other along y-axis
@@ -63,7 +76,27 @@ class MealItem extends StatelessWidget {
                     height: 12,
                   ),
                   Row(
-                    children: [],
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: MealItemTrail(
+                          icon: Icons.schedule,
+                          label: '${meal.duration} min',
+                        ),
+                      ),
+                      Expanded(
+                        child: MealItemTrail(
+                          icon: Icons.work,
+                          label: complexityTest,
+                        ),
+                      ),
+                      Expanded(
+                        child: MealItemTrail(
+                          icon: Icons.attach_money,
+                          label: affordabilityText,
+                        ),
+                      )
+                    ],
                   )
                 ]),
               ),
