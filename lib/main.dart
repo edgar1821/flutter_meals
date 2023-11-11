@@ -5,6 +5,7 @@ import 'package:meals/screens/Categories.dart';
 //import 'package:meals/screens/Categories.dart';
 import 'package:meals/screens/MealScreen.dart';
 import 'package:meals/data/dummy_data.dart';
+import 'package:meals/screens/tabs.dart';
 
 final theme = ThemeData(
   useMaterial3: true,
@@ -26,7 +27,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: theme,
-      home: const CathegoriesScreen(),
+      home: const TabScreenState(),
     );
   }
 }
