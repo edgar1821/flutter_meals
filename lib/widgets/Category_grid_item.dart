@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meals/models/Category.dart';
+
+import 'package:meals/models/category.dart';
 
 class CategoryGridItem extends StatelessWidget {
   const CategoryGridItem({
@@ -10,17 +11,15 @@ class CategoryGridItem extends StatelessWidget {
 
   final Category category;
   final void Function() onSelectCategory;
+
   @override
   Widget build(BuildContext context) {
-    /*
-    InkWell es similar a gesture detecter pero ademas da un feedback
-    we are using inkwell for wrapp the container and add other behavior
-     */
     return InkWell(
       onTap: onSelectCategory,
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(16),
       child: Container(
+        padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             gradient: LinearGradient(
@@ -33,7 +32,9 @@ class CategoryGridItem extends StatelessWidget {
             )),
         child: Text(
           category.title,
-          style: Theme.of(context).textTheme.titleLarge!.copyWith(),
+          style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                color: Theme.of(context).colorScheme.onBackground,
+              ),
         ),
       ),
     );

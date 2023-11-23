@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:meals/models/Meal.dart';
-import 'package:meals/widgets/meal_item_trail.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+import 'package:meals/widgets/meal_item_trait.dart';
+import 'package:meals/models/meal.dart';
 
 class MealItem extends StatelessWidget {
   const MealItem({
@@ -9,9 +10,11 @@ class MealItem extends StatelessWidget {
     required this.meal,
     required this.onSelectMeal,
   });
+
   final Meal meal;
   final void Function(Meal meal) onSelectMeal;
-  String get complexityTest {
+
+  String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
         meal.complexity.name.substring(1);
   }
@@ -21,13 +24,6 @@ class MealItem extends StatelessWidget {
         meal.affordability.name.substring(1);
   }
 
-  // ignore: slash_for_doc_comments
-  /**
-   the difference between column and stack is
-   column the widgets are positioned next to each other along y-axis
-
-   stack: widgets are positioned on top of each other along the z-axis
-   */
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -35,10 +31,6 @@ class MealItem extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      /*
-        the widget stack don't allow to show the border radious, using clipBehavior: Clip.hardEdge,
-        elevation: 2, is a way to force to show the border radious
-       */
       clipBehavior: Clip.hardEdge,
       elevation: 2,
       child: InkWell(
@@ -56,52 +48,48 @@ class MealItem extends StatelessWidget {
             ),
             Positioned(
               bottom: 0,
-              right: 0,
               left: 0,
+              right: 0,
               child: Container(
                 color: Colors.black54,
                 padding:
                     const EdgeInsets.symmetric(vertical: 6, horizontal: 44),
-                child: Column(children: [
-                  Text(
-                    meal.title,
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    softWrap: true,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                child: Column(
+                  children: [
+                    Text(
+                      meal.title,
+                      maxLines: 2,
+                      textAlign: TextAlign.center,
+                      softWrap: true,
+                      overflow: TextOverflow.ellipsis, // Very long text ...
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                        child: MealItemTrail(
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MealItemTrait(
                           icon: Icons.schedule,
                           label: '${meal.duration} min',
                         ),
-                      ),
-                      Expanded(
-                        child: MealItemTrail(
+                        const SizedBox(width: 12),
+                        MealItemTrait(
                           icon: Icons.work,
-                          label: complexityTest,
+                          label: complexityText,
                         ),
-                      ),
-                      Expanded(
-                        child: MealItemTrail(
+                        const SizedBox(width: 12),
+                        MealItemTrait(
                           icon: Icons.attach_money,
                           label: affordabilityText,
-                        ),
-                      )
-                    ],
-                  )
-                ]),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
               ),
             )
           ],

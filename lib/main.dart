@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:meals/screens/tabs.dart';
 
 final theme = ThemeData(
@@ -27,10 +27,3 @@ class App extends StatelessWidget {
     );
   }
 }
-/**
- * 
- * home: const MealScreen(
-        title: 'Some Categoty',
-        meals: dummyMeals,
-      ),
- */
